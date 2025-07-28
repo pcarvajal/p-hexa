@@ -1,0 +1,5 @@
+export enum ConfirmationState {
+  FAILED = 'FAILED',
+  PSP_PENDING_CONFIRMATION = 'PSP_PENDING_CONFIRMATION',
+  SUCCESS = 'SUCCESS',
+}
