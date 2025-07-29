@@ -1,5 +1,6 @@
 import * as http from 'http';
-import * as console from 'node:console';
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
 import { AwilixContainer } from 'awilix';
 import { loadControllers, scopePerRequest } from 'awilix-express';
 import express, { Request, Response } from 'express';
@@ -34,6 +35,9 @@ export class Server {
   }
 
   async listen(container: AwilixContainer): Promise<void> {
+    // @ts-ignore
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = dirname(__filename);
     this.express.use(scopePerRequest(container));
     this.express.use(
       loadControllers('controllers/*Controller.ts', { cwd: __dirname }),

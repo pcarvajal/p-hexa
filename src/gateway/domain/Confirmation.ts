@@ -1,23 +1,31 @@
+import { ConfirmationState } from '@gateway/domain/ConfirmationState';
+
 export class Confirmation {
-    private readonly state: string;
-    private readonly createdAt: Date;
+  private readonly state: ConfirmationState;
+  private readonly createdAt: Date;
 
-    constructor({ state, createdAt }: { state: string; createdAt: Date }) {
-        this.state = state;
-        this.createdAt = createdAt;
-    }
+  constructor({
+    state,
+    createdAt,
+  }: {
+    state: ConfirmationState;
+    createdAt: Date;
+  }) {
+    this.state = state;
+    this.createdAt = createdAt;
+  }
 
-    toScalars() {
-        return {
-            state: this.state,
-            createdAt: this.createdAt.toISOString(),
-        };
-    }
+  toScalars() {
+    return { state: this.state, createdAt: this.createdAt };
+  }
 
-    static fromScalars(scalars: { state: string; createdAt: string }): Confirmation {
-        return new Confirmation({
-            state: scalars.state,
-            createdAt: new Date(scalars.createdAt),
-        });
-    }
+  static fromScalars(scalars: {
+    state: string;
+    createdAt: Date;
+  }): Confirmation {
+    return new Confirmation({
+      state: ConfirmationState[scalars.state as keyof typeof ConfirmationState],
+      createdAt: scalars.createdAt,
+    });
+  }
 }

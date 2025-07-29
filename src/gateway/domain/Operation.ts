@@ -13,15 +13,15 @@ export class Operation{
     return {
       pspId: this.pspId,
       callbackUrl: this.callbackUrl,
-      createdAt: this.createdAt.toISOString(),
+      createdAt: this.createdAt,
     };
   }
 
-  static fromScalars(scalars: { pspId: string; callbackUrl: string; createdAt: string }): Operation {
+  static fromScalars(scalars: { pspId: string; callbackUrl: string; createdAt: Date }): Operation {
     return new Operation({
       pspId: scalars.pspId,
       callbackUrl: scalars.callbackUrl,
-      createdAt: new Date(scalars.createdAt),
+      createdAt: scalars.createdAt,
     });
   }
 }

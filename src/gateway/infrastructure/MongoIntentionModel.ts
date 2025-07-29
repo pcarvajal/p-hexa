@@ -32,11 +32,12 @@ interface IMongoIntention extends Document {
   channel: string;
   commerce: string;
   items: IMongoIntentionItem[];
-  money: { country: string; total: number; currency: string };
+  money: { country: string; amount: number; currency: string };
   country: string;
   notification: IMongoNotification | null;
   operation: IMongoOperation | null;
   confirmation: IMongoConfirmation | null;
+  state: string;
   updatedAt: Date;
   createdAt: Date;
 }
@@ -88,13 +89,14 @@ const MongoIntentionSchema: Schema<IMongoIntention> = new Schema(
     items: { type: [MongoIntentionItemSchema], required: true },
     money: {
       country: { type: String, required: true },
-      total: { type: Number, required: true },
+      amount: { type: Number, required: true },
       currency: { type: String, required: true },
     },
     country: { type: String, required: true },
     notification: { type: MongoNotificationSchema, required: false },
     operation: { type: MongoOperationSchema, required: false },
     confirmation: { type: MongoConfirmationSchema, required: false },
+    state: { type: String, required: true },
     updatedAt: { type: Date, required: true },
     createdAt: { type: Date, required: true },
   },

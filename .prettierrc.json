@@ -13,11 +13,11 @@
   "importOrder": [
     "<THIRD_PARTY_MODULES>",
     "",
-    "^@config/(.*)$",
+    "^@apps/(.*)$",
     "",
     "^@shared/(.*)$",
     "",
-    "^@modules/(.*)$",
+    "^@gateway/(.*)$",
     "",
     "^[./]",
     ""
